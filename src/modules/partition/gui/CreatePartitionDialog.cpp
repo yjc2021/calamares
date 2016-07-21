@@ -197,6 +197,7 @@ CreatePartitionDialog::createPartition()
     FileSystem::Type fsType = m_role.has( PartitionRole::Extended )
                               ? FileSystem::Extended
                               : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
+    const QString fsLabel = m_ui->filesystemLabelEdit->text();
 
     Partition* partition = nullptr;
     QString luksPassphrase = m_ui->encryptWidget->passphrase();
@@ -207,7 +208,7 @@ CreatePartitionDialog::createPartition()
             m_parent,
             *m_device,
             m_role,
-            fsType, first, last, luksPassphrase, newFlags()
+            fsType, fsLabel, first, last, luksPassphrase, newFlags()
         );
     }
     else
@@ -216,7 +217,7 @@ CreatePartitionDialog::createPartition()
             m_parent,
             *m_device,
             m_role,
-            fsType, first, last, newFlags()
+            fsType, fsLabel, first, last, newFlags()
         );
     }
 

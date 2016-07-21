@@ -76,6 +76,9 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
         m_ui->fileSystemLabel->setEnabled( doFormat );
         m_ui->fileSystemComboBox->setEnabled( doFormat );
 
+        m_ui->fileSystemLabelEdit->setEnabled( doFormat );
+        m_ui->fileSystemLabelEdit->setText( m_partition->fileSystem().label() );
+
         if ( !doFormat )
             m_ui->fileSystemComboBox->setCurrentText( m_partition->fileSystem().name() );
 
@@ -174,6 +177,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                 ? FileSystem::Extended
                 : FileSystem::typeForName( m_ui->fileSystemComboBox->currentText() );
     }
+    const QString fsLabel = m_ui->fileSystemLabelEdit->text();
 
     if ( partResizedMoved )
     {
@@ -183,7 +187,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                           m_partition->parent(),
                                           *m_device,
                                           m_partition->roles(),
-                                          fsType,
+                                          fsType, fsLabel,
                                           newFirstSector,
                                           newLastSector,
                                           newFlags() );
@@ -222,7 +226,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                               m_partition->parent(),
                                               *m_device,
                                               m_partition->roles(),
-                                              fsType,
+                                              fsType, fsLabel,
                                               m_partition->firstSector(),
                                               m_partition->lastSector(),
                                               newFlags() );
