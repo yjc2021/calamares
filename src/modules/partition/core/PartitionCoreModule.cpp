@@ -26,6 +26,7 @@
 #include "core/PartitionModel.h"
 #include "core/KPMHelpers.h"
 #include "core/PartUtils.h"
+#include "jobs/ChangeFilesystemLabelJob.h"
 #include "jobs/ClearMountsJob.h"
 #include "jobs/ClearTempMountsJob.h"
 #include "jobs/CreatePartitionJob.h"
@@ -322,6 +323,18 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
     PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
 
     FormatPartitionJob* job = new FormatPartitionJob( device, partition );
+    deviceInfo->jobs << Calamares::job_ptr( job );
+
+    refresh();
+}
+
+void
+PartitionCoreModule::setFilesystemLabel(Device *device, Partition *partition, const QString& newLabel) {
+    auto deviceInfo = infoForDevice( device );
+    Q_ASSERT( deviceInfo );
+    PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
+
+    ChangeFilesystemLabelJob* job = new ChangeFilesystemLabelJob( device, partition, newLabel );
     deviceInfo->jobs << Calamares::job_ptr( job );
 
     refresh();

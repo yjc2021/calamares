@@ -66,6 +66,10 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
 
     m_ui->mountPointComboBox->setCurrentText( PartitionInfo::mountPoint( partition ) );
 
+    // The filesystem label dialog is always enabled, because we may want to change
+    // the label on the current filesystem without formatting.
+    m_ui->fileSystemLabelEdit->setText( m_partition->fileSystem().label() );
+
     replacePartResizerWidget();
 
     connect( m_ui->formatRadioButton, &QAbstractButton::toggled,
@@ -75,9 +79,6 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
 
         m_ui->fileSystemLabel->setEnabled( doFormat );
         m_ui->fileSystemComboBox->setEnabled( doFormat );
-
-        m_ui->fileSystemLabelEdit->setEnabled( doFormat );
-        m_ui->fileSystemLabelEdit->setText( m_partition->fileSystem().label() );
 
         if ( !doFormat )
             m_ui->fileSystemComboBox->setCurrentText( m_partition->fileSystem().name() );
@@ -217,6 +218,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             if ( m_partition->fileSystem().type() == fsType )
             {
                 core->formatPartition( m_device, m_partition );
+                core->setFilesystemLabel( m_device, m_partition, fsLabel );
                 if ( m_partition->activeFlags() != newFlags() )
                     core->setPartitionFlags( m_device, m_partition, newFlags() );
             }
@@ -243,6 +245,14 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             core->refreshPartition( m_device, m_partition );
             if ( m_partition->activeFlags() != newFlags() )
                 core->setPartitionFlags( m_device, m_partition, newFlags() );
+
+            // In this case, we are not formatting the partition, but we are setting the
+            // label on the current filesystem, if any. We only create the job if the
+            // label actually changed.
+            if (m_partition->fileSystem().type() != FileSystem::Type::Unformatted &&
+                fsLabel != m_partition->fileSystem().label()) {
+                core->setFilesystemLabel( m_device, m_partition, fsLabel );
+            }
         }
     }
 }
