@@ -144,6 +144,8 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         }
         if ( col == FileSystemColumn )
             return KPMHelpers::prettyNameForFileSystemType( partition->fileSystem().type() );
+        if ( col == FileSystemLabelColumn )
+            return partition->fileSystem().label();
         if ( col == MountPointColumn )
             return PartitionInfo::mountPoint( partition );
         if ( col == SizeColumn )
@@ -242,6 +244,8 @@ PartitionModel::headerData( int section, Qt::Orientation orientation, int role )
         return tr( "Name" );
     case FileSystemColumn:
         return tr( "File System" );
+    case FileSystemLabelColumn:
+        return tr( "File System Label" );
     case MountPointColumn:
         return tr( "Mount Point" );
     case SizeColumn:

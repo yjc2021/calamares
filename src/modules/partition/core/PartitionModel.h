@@ -84,6 +84,7 @@ public:
     {
         NameColumn,
         FileSystemColumn,
+        FileSystemLabelColumn,
         MountPointColumn,
         SizeColumn,
         ColumnCount // Must remain last
