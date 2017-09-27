@@ -26,6 +26,7 @@
 #include <core/ColorUtils.h>
 #include <core/PartitionCoreModule.h>
 #include <core/PartitionInfo.h>
+#include "core/PartUtils.h"
 #include <core/KPMHelpers.h>
 #include <gui/PartitionSizeController.h>
 
@@ -43,18 +44,20 @@
 // Qt
 #include <QComboBox>
 #include <QDir>
+#include <QPushButton>
 
-EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partition* partition, QWidget* parentWidget )
+EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partition* partition, const QStringList& usedMountPoints, QWidget* parentWidget )
     : QDialog( parentWidget )
     , m_ui( new Ui_EditExistingPartitionDialog )
     , m_device( device )
     , m_partition( partition )
     , m_partitionSizeController( new PartitionSizeController( this ) )
+    , m_usedMountPoints( usedMountPoints )
 {
     m_ui->setupUi( this );
 
     QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+    if ( PartUtils::isEfiSystem() )
         mountPoints << Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
     mountPoints.removeDuplicates();
     mountPoints.sort();
@@ -65,6 +68,8 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     m_partitionSizeController->setSpinBox( m_ui->sizeSpinBox );
 
     m_ui->mountPointComboBox->setCurrentText( PartitionInfo::mountPoint( partition ) );
+    connect( m_ui->mountPointComboBox, &QComboBox::currentTextChanged,
+             this, &EditExistingPartitionDialog::checkMountPointSelection );
 
     // The filesystem label dialog is always enabled, because we may want to change
     // the label on the current filesystem without formatting.
@@ -304,4 +309,21 @@ EditExistingPartitionDialog::updateMountPointPicker()
     m_ui->mountPointComboBox->setEnabled( canMount );
     if ( !canMount )
         m_ui->mountPointComboBox->setCurrentText( QString() );
+}
+
+void
+EditExistingPartitionDialog::checkMountPointSelection()
+{
+    const QString& selection = m_ui->mountPointComboBox->currentText();
+
+    if ( m_usedMountPoints.contains( selection ) )
+    {
+        m_ui->labelMountPoint->setText( tr( "Mountpoint already in use. Please select another one." ) );
+        m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( false );
+    }
+    else
+    {
+        m_ui->labelMountPoint->setText( QString() );
+        m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( true );
+    }
 }

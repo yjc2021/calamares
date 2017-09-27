@@ -50,7 +50,8 @@ public:
     QString prettyStatus() const;
 
     QList< Calamares::job_ptr > createJobs( const QString& xOrgConfFileName,
-                                            const QString& convertedKeymapPath );
+                                            const QString& convertedKeymapPath,
+                                            bool writeEtcDefaultKeyboard );
 
     void onActivate();
     void finalize();
@@ -62,13 +63,6 @@ protected slots:
                                           QListWidgetItem* previous );
 
 private:
-    class LayoutItem : public QListWidgetItem
-    {
-    public:
-        QString data;
-        KeyboardGlobal::KeyboardInfo info;
-    };
-
     void updateVariants( const QPersistentModelIndex& currentItem,
                          QString currentVariant = QString() );
 

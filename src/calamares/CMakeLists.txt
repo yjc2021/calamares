@@ -27,8 +27,6 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}/../libcalamares
 
-    ${THIRDPARTY_DIR}/libcrashreporter-qt/src/
-
     ../libcalamares
     ../libcalamaresui
 )
@@ -37,10 +35,8 @@ include( GNUInstallDirs )
 
 qt5_wrap_ui( calamaresUi_H ${calamaresUi} )
 
-#qt_add_resources( calamaresRc "../../resources.qrc" )
-
 # Translations
-include( ${CMAKE_SOURCE_DIR}/lang/translations.cmake )
+include( CalamaresAddTranslations )
 add_calamares_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )
 
 set( final_src ${calamaresUi_H} ${calamaresSources} ${calamaresRc} ${trans_outfile} )
@@ -53,18 +49,13 @@ SET_TARGET_PROPERTIES(calamares_bin
         RUNTIME_OUTPUT_NAME calamares
 )
 
-if( WITH_CRASHREPORTER )
-    list( APPEND LINK_LIBRARIES ${LINK_LIBRARIES} pthread crashreporter-handler )
-endif()
-
-qt5_use_modules( calamares_bin Core Widgets )
 target_link_libraries( calamares_bin
-    ${CALAMARES_LIBRARIES}
-    calamaresui
-    Qt5::Core
-    Qt5::Widgets
-    yaml-cpp
-    ${LINK_LIBRARIES}
+    PRIVATE
+        ${CALAMARES_LIBRARIES}
+        calamaresui
+        Qt5::Core
+        Qt5::Widgets
+        ${LINK_LIBRARIES}
 )
 
 install( TARGETS calamares_bin

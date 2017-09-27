@@ -97,7 +97,7 @@ boost::python::list
 variantListToPyList( const QVariantList& variantList )
 {
     bp::list pyList;
-    foreach ( const QVariant& variant, variantList )
+    for ( const QVariant& variant : variantList )
         pyList.append( variantToPyObject( variant ) );
     return pyList;
 }
@@ -189,7 +189,8 @@ Helper::Helper( QObject* parent )
     // Let's make extra sure we only call Py_Initialize once
     if ( !s_instance )
     {
-        Py_Initialize();
+        if ( !Py_IsInitialized() )
+            Py_Initialize();
 
         m_mainModule = bp::import( "__main__" );
         m_mainNamespace = m_mainModule.attr( "__dict__" );
@@ -315,4 +316,4 @@ Helper::handleLastError()
 }
 
 
-} // namespace Calamares
+} // namespace CalamaresPython

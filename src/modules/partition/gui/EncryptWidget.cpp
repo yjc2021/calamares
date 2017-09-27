@@ -23,6 +23,7 @@
 
 EncryptWidget::EncryptWidget( QWidget* parent )
     : QWidget( parent )
+    , m_state( EncryptionDisabled )
 {
     setupUi( this );
 
@@ -38,6 +39,7 @@ EncryptWidget::EncryptWidget( QWidget* parent )
     connect( m_confirmLineEdit, &QLineEdit::textEdited,
              this, &EncryptWidget::onPassphraseEdited );
 
+    setFixedHeight( m_passphraseLineEdit->height() ); // Avoid jumping up and down
     updateState();
 }
 

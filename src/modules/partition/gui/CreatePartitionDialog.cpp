@@ -21,6 +21,7 @@
 
 #include "core/ColorUtils.h"
 #include "core/PartitionInfo.h"
+#include "core/PartUtils.h"
 #include "core/KPMHelpers.h"
 #include "gui/PartitionSizeController.h"
 
@@ -40,8 +41,9 @@
 // Qt
 #include <QComboBox>
 #include <QDir>
-#include <QSet>
 #include <QListWidgetItem>
+#include <QPushButton>
+#include <QSet>
 
 static QSet< FileSystem::Type > s_unmountableFS(
 {
@@ -52,24 +54,25 @@ static QSet< FileSystem::Type > s_unmountableFS(
     FileSystem::Lvm2_PV
 } );
 
-CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* parentPartition, QWidget* parentWidget )
+CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* parentPartition, const QStringList& usedMountPoints, QWidget* parentWidget )
     : QDialog( parentWidget )
     , m_ui( new Ui_CreatePartitionDialog )
     , m_partitionSizeController( new PartitionSizeController( this ) )
     , m_device( device )
     , m_parent( parentPartition )
+    , m_usedMountPoints( usedMountPoints )
 {
     m_ui->setupUi( this );
     m_ui->encryptWidget->setText( tr( "En&crypt" ) );
     m_ui->encryptWidget->hide();
 
     QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+    if ( PartUtils::isEfiSystem() )
         mountPoints << Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
     mountPoints.removeDuplicates();
     mountPoints.sort();
     m_ui->mountPointComboBox->addItems( mountPoints );
-    
+
     if ( device->partitionTable()->type() == PartitionTable::msdos ||
          device->partitionTable()->type() == PartitionTable::msdos_sectorbased )
         initMbrPartitionTypeUi();
@@ -101,11 +104,15 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     connect( m_ui->fsComboBox, SIGNAL( activated( int ) ), SLOT( updateMountPointUi() ) );
     connect( m_ui->extendedRadioButton, SIGNAL( toggled( bool ) ), SLOT( updateMountPointUi() ) );
 
+    connect( m_ui->mountPointComboBox, &QComboBox::currentTextChanged, this, &CreatePartitionDialog::checkMountPointSelection );
+
     // Select a default
     m_ui->fsComboBox->setCurrentIndex( defaultFsIndex );
     updateMountPointUi();
 
     setupFlagsList();
+    // Checks the initial selection.
+    checkMountPointSelection();
 }
 
 CreatePartitionDialog::~CreatePartitionDialog()
@@ -251,6 +258,23 @@ CreatePartitionDialog::updateMountPointUi()
     m_ui->mountPointComboBox->setEnabled( enabled );
     if ( !enabled )
         m_ui->mountPointComboBox->setCurrentText( QString() );
+}
+
+void
+CreatePartitionDialog::checkMountPointSelection()
+{
+    const QString& selection = m_ui->mountPointComboBox->currentText();
+
+    if ( m_usedMountPoints.contains( selection ) )
+    {
+        m_ui->labelMountPoint->setText( tr( "Mountpoint already in use. Please select another one." ) );
+        m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( false );
+    }
+    else
+    {
+        m_ui->labelMountPoint->setText( QString() );
+        m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( true );
+    }
 }
 
 void
