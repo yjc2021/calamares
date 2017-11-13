@@ -111,6 +111,7 @@ createNewPartition( PartitionNode* parent,
                     const Device& device,
                     const PartitionRole& role,
                     FileSystem::Type fsType,
+                    const QString& fsLabel,
                     qint64 firstSector,
                     qint64 lastSector,
                     PartitionTable::Flags flags )
@@ -120,6 +121,7 @@ createNewPartition( PartitionNode* parent,
                                                 ,device.logicalSize()
 #endif
     );
+    fs->setLabel( fsLabel );
     return new Partition(
                parent,
                device,
@@ -140,6 +142,7 @@ createNewEncryptedPartition( PartitionNode* parent,
                              const Device& device,
                              const PartitionRole& role,
                              FileSystem::Type fsType,
+                             const QString& fsLabel,
                              qint64 firstSector,
                              qint64 lastSector,
                              const QString& passphrase,
@@ -165,6 +168,7 @@ createNewEncryptedPartition( PartitionNode* parent,
 
     fs->createInnerFileSystem( fsType );
     fs->setPassphrase( passphrase );
+    fs->setLabel( fsLabel );
     Partition* p = new Partition( parent,
                                   device,
                                   PartitionRole( newRoles ),

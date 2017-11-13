@@ -610,7 +610,7 @@ ChoicePage::doAlongsideApply()
                     candidate->parent(),
                     *dev,
                     candidate->roles(),
-                    FileSystem::typeForName( m_defaultFsType ),
+                    FileSystem::typeForName( m_defaultFsType ), "root",
                     newLastSector + 2, // *
                     oldLastSector
                 );
@@ -621,7 +621,7 @@ ChoicePage::doAlongsideApply()
                     candidate->parent(),
                     *dev,
                     candidate->roles(),
-                    FileSystem::typeForName( m_defaultFsType ),
+                    FileSystem::typeForName( m_defaultFsType ), "root",
                     newLastSector + 2, // *
                     oldLastSector,
                     luksPassphrase
@@ -709,7 +709,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                     newParent,
                     *selectedDevice(),
                     newRoles,
-                    FileSystem::typeForName( m_defaultFsType ),
+                    FileSystem::typeForName( m_defaultFsType ), "root",
                     selectedPartition->firstSector(),
                     selectedPartition->lastSector(),
                     m_encryptWidget->passphrase() );
@@ -720,7 +720,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                     newParent,
                     *selectedDevice(),
                     newRoles,
-                    FileSystem::typeForName( m_defaultFsType ),
+                    FileSystem::typeForName( m_defaultFsType ), "root",
                     selectedPartition->firstSector(),
                     selectedPartition->lastSector() );
             }

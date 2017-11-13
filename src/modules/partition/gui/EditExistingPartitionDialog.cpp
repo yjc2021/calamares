@@ -71,6 +71,10 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     connect( m_ui->mountPointComboBox, &QComboBox::currentTextChanged,
              this, &EditExistingPartitionDialog::checkMountPointSelection );
 
+    // The filesystem label dialog is always enabled, because we may want to change
+    // the label on the current filesystem without formatting.
+    m_ui->fileSystemLabelEdit->setText( m_partition->fileSystem().label() );
+
     replacePartResizerWidget();
 
     connect( m_ui->formatRadioButton, &QAbstractButton::toggled,
@@ -179,6 +183,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                 ? FileSystem::Extended
                 : FileSystem::typeForName( m_ui->fileSystemComboBox->currentText() );
     }
+    const QString fsLabel = m_ui->fileSystemLabelEdit->text();
 
     if ( partResizedMoved )
     {
@@ -188,7 +193,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                           m_partition->parent(),
                                           *m_device,
                                           m_partition->roles(),
-                                          fsType,
+                                          fsType, fsLabel,
                                           newFirstSector,
                                           newLastSector,
                                           newFlags() );
@@ -218,6 +223,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             if ( m_partition->fileSystem().type() == fsType )
             {
                 core->formatPartition( m_device, m_partition );
+                core->setFilesystemLabel( m_device, m_partition, fsLabel );
                 if ( m_partition->activeFlags() != newFlags() )
                     core->setPartitionFlags( m_device, m_partition, newFlags() );
             }
@@ -227,7 +233,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                               m_partition->parent(),
                                               *m_device,
                                               m_partition->roles(),
-                                              fsType,
+                                              fsType, fsLabel,
                                               m_partition->firstSector(),
                                               m_partition->lastSector(),
                                               newFlags() );
@@ -244,6 +250,14 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             core->refreshPartition( m_device, m_partition );
             if ( m_partition->activeFlags() != newFlags() )
                 core->setPartitionFlags( m_device, m_partition, newFlags() );
+
+            // In this case, we are not formatting the partition, but we are setting the
+            // label on the current filesystem, if any. We only create the job if the
+            // label actually changed.
+            if (m_partition->fileSystem().type() != FileSystem::Type::Unformatted &&
+                fsLabel != m_partition->fileSystem().label()) {
+                core->setFilesystemLabel( m_device, m_partition, fsLabel );
+            }
         }
     }
 }
