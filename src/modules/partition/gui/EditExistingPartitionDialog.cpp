@@ -193,7 +193,8 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                           m_partition->parent(),
                                           *m_device,
                                           m_partition->roles(),
-                                          fsType, fsLabel,
+                                          fsType,
+                                          fsLabel,
                                           newFirstSector,
                                           newLastSector,
                                           newFlags() );
@@ -233,7 +234,8 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                               m_partition->parent(),
                                               *m_device,
                                               m_partition->roles(),
-                                              fsType, fsLabel,
+                                              fsType,
+                                              fsLabel,
                                               m_partition->firstSector(),
                                               m_partition->lastSector(),
                                               newFlags() );

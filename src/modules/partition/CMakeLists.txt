@@ -74,7 +74,6 @@ calamares_add_plugin( partition
         gui/ScanningDialog.cpp
         gui/ReplaceWidget.cpp
         jobs/ChangeFilesystemLabelJob.cpp
-        jobs/CheckFileSystemJob.cpp
         jobs/ClearMountsJob.cpp
         jobs/ClearTempMountsJob.cpp
         jobs/CreatePartitionJob.cpp

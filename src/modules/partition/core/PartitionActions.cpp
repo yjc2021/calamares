@@ -138,7 +138,8 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
             dev->partitionTable(),
             *dev,
             PartitionRole( PartitionRole::Primary ),
-            FileSystem::Fat32, "",
+            FileSystem::Fat32,
+            QString(),
             firstFreeSector,
             lastSector,
             PartitionTable::FlagEsp
@@ -183,7 +184,8 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
             dev->partitionTable(),
             *dev,
             PartitionRole( PartitionRole::Primary ),
-            FileSystem::typeForName( defaultFsType ), "",
+            FileSystem::typeForName( defaultFsType ),
+            QString(),
             firstFreeSector,
             lastSectorForRoot
         );
@@ -194,7 +196,8 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
             dev->partitionTable(),
             *dev,
             PartitionRole( PartitionRole::Primary ),
-            FileSystem::typeForName( defaultFsType ), "",
+            FileSystem::typeForName( defaultFsType ),
+            QString(),
             firstFreeSector,
             lastSectorForRoot,
             luksPassphrase
@@ -275,7 +278,8 @@ doReplacePartition( PartitionCoreModule* core,
             partition->parent(),
             *dev,
             newRoles,
-            FileSystem::typeForName( defaultFsType ), "",
+            FileSystem::typeForName( defaultFsType ),
+            QString(),
             partition->firstSector(),
             partition->lastSector()
         );
@@ -286,7 +290,8 @@ doReplacePartition( PartitionCoreModule* core,
             partition->parent(),
             *dev,
             newRoles,
-            FileSystem::typeForName( defaultFsType ), "",
+            FileSystem::typeForName( defaultFsType ),
+            QString(),
             partition->firstSector(),
             partition->lastSector(),
             luksPassphrase
