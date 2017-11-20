@@ -22,6 +22,7 @@
 #include "OsproberEntry.h"
 
 #include <QString>
+#include <QStringList>
 
 class PartitionCoreModule;
 class Partition;
@@ -66,6 +67,13 @@ OsproberEntryList runOsprober( PartitionCoreModule* core );
  * @brief Is this system EFI-enabled? Decides based on /sys/firmware/efi
  */
 bool isEfiSystem();
+
+
+/**
+ * @brief The standard list of mount points to use in partition-dialogs.
+ * This takes EFI systems into account and doesn't return duplicate entries.
+ */
+QStringList standardMountPoints();
 
 }
 

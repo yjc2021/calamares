@@ -340,4 +340,17 @@ isEfiSystem()
     return QDir( "/sys/firmware/efi/efivars" ).exists();
 }
 
+QStringList
+standardMountPoints()
+{
+    QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
+    if ( PartUtils::isEfiSystem() )
+        mountPoints << Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
+    mountPoints.removeDuplicates();
+    mountPoints.sort();
+
+    return mountPoints;
+}
+
+
 }  // nmamespace PartUtils
