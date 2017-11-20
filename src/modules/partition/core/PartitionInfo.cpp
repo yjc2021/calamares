@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,8 +28,9 @@
 namespace PartitionInfo
 {
 
-static const char* MOUNT_POINT_PROPERTY = "_calamares_mountPoint";
-static const char* FORMAT_PROPERTY = "_calamares_format";
+static const char MOUNT_POINT_PROPERTY[] = "_calamares_mountPoint";
+static const char FORMAT_PROPERTY[] = "_calamares_format";
+static const char FSLABEL_PROPERTY[] = "_calamares_fslabel";
 
 QString
 mountPoint( Partition* partition )
