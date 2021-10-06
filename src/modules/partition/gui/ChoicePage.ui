@@ -17,7 +17,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="m_mainLayout" stretch="0,1">
+  <layout class="QVBoxLayout" name="m_mainLayout" stretch="0,0,1">
    <property name="bottomMargin">
     <number>0</number>
    </property>
@@ -30,6 +30,33 @@ SPDX-License-Identifier: GPL-3.0-or-later
        </property>
        <property name="text">
         <string notr="true">&lt;m_drivesLabel&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="leftMargin">
+      <number>10</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Backup</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string> Click to backup file</string>
        </property>
       </widget>
      </item>
@@ -66,8 +93,8 @@ SPDX-License-Identifier: GPL-3.0-or-later
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>729</width>
-          <height>233</height>
+          <width>723</width>
+          <height>324</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="m_itemsLayout">
