@@ -95,6 +95,7 @@ private slots:
     void doAlongsideSetupSplitter( const QModelIndex& current, const QModelIndex& previous );
     void onEncryptWidgetStateChanged();
     void onHomeCheckBoxStateChanged();
+    void on_pushButton_clicked();
 
     /// @brief Calls applyActionChoice() as needed.
     void onActionChanged();
