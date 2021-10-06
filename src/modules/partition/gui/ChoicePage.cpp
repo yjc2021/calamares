@@ -1685,3 +1685,9 @@ ChoicePage::setLastSelectedDeviceIndex( int index )
     m_lastSelectedDeviceIndex = index;
     m_drivesCombo->setCurrentIndex( m_lastSelectedDeviceIndex );
 }
+
+void ChoicePage::on_pushButton_clicked()
+{
+    QString str("hi");
+    label->setText(str)
+}
