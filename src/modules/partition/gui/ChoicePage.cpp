@@ -1689,5 +1689,5 @@ ChoicePage::setLastSelectedDeviceIndex( int index )
 void ChoicePage::on_pushButton_clicked()
 {
     QString str("hi");
-    label->setText(str)
+    label->setText(str);
 }
