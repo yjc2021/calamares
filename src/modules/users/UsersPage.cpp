@@ -32,6 +32,8 @@
 #include <QLabel>
 #include <QLineEdit>
 
+#include <unistd.h>
+
 /** @brief Add an error message and pixmap to a label. */
 static inline void
 labelError( QLabel* pix, QLabel* label, CalamaresUtils::ImageType icon, const QString& message )
@@ -102,7 +104,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( config, &Config::rootPasswordStatusChanged, this, &UsersPage::reportRootPasswordStatus );
 
     ui->textBoxFullName->setText( config->fullName() );
-    connect( ui->textBoxFullName, &QLineEdit::textEdited, config, &Config::setFullName );
+    connect( ui->textBoxFullName, &QLineEdit::textChanged, config, &Config::setFullName );
     connect( config, &Config::fullNameChanged, this, &UsersPage::onFullNameTextEdited );
 
     ui->textBoxHostName->setText( config->hostName() );
@@ -114,7 +116,12 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( ui->textBoxLoginName, &QLineEdit::textEdited, config, &Config::setLoginName );
     connect( config, &Config::loginNameChanged, ui->textBoxLoginName, &QLineEdit::setText );
     connect( config, &Config::loginNameStatusChanged, this, &UsersPage::reportLoginNameStatus );
-
+        
+    if( getlogin() != NULL)
+    {
+        QString auto_userName( getlogin() );
+        ui->textBoxFullName->setText( auto_userName );
+    }
     ui->checkBoxDoAutoLogin->setChecked( m_config->doAutoLogin() );
     connect( ui->checkBoxDoAutoLogin, &QCheckBox::stateChanged, this, [this]( int checked ) {
         m_config->setAutoLogin( checked != Qt::Unchecked );
