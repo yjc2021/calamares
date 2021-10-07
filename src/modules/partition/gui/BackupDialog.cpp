@@ -36,11 +36,11 @@ BackupDialog::BackupDialog(QWidget *parent)
     	
     	tmp = (char*)malloc(300);
     	strcpy(tmp,caCopy);
-	    QString qstrCopy(trim(tmp));
-	    free(tmp);
+    	QString qstrCopy(trim(tmp));
+	free(tmp);
 	
-	    ui->copyLine->setText(qstrCopy);
-	    qstrCopy.clear();
+	ui->copyLine->setText(qstrCopy);
+	qstrCopy.clear();
     }
 }
 
@@ -69,4 +69,8 @@ char *BackupDialog::trim(char *s)
     ptr[1] = '\0';
     return s;
 }
+
+
+
+
 
