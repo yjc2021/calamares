@@ -21,7 +21,12 @@ private slots:
 
     void on_backupButton_clicked();
 
-private:
+private:     
+    char *trim(char *s);
+    
+    char* caCopy;
+    char* caBackup;
+    char* tmp;
     Ui::BackupDialog *ui;
 };
 #endif // DIALOG_H
