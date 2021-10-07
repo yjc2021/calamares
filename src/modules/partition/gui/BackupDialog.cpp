@@ -18,29 +18,31 @@
 
 using namespace std;
 
+string strCopy;
+string strBackup;
+string tmp;
 
 BackupDialog::BackupDialog(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::BackupDialog)
-    , caCopy(nullptr)
-    , caBackup(nullptr)
-    , tmp(nullptr)
 {
     ui->setupUi(this);
     
+    strCopy = "";
+    strBackup = "";
+    
     // if userName allready exist
     if(getlogin() != NULL){
-    caCopy = (char*)malloc(300);
-    	strcat(caCopy,"/home/");
-    	strcat(caCopy,getlogin());
+    
+    	tmp = "/home/";
+    	strCopy += tmp;
+    	tmp = getlogin();
+    	strCopy += tmp;
     	
-    	tmp = (char*)malloc(300);
-    	strcpy(tmp,caCopy);
-    	QString qstrCopy(trim(tmp));
-	free(tmp);
-	
+    	QString qstrCopy(strCopy.c_str());
 	ui->copyLine->setText(qstrCopy);
 	qstrCopy.clear();
+    	
     }
 }
 
@@ -51,26 +53,20 @@ BackupDialog::~BackupDialog()
 
 void BackupDialog::on_copyButton_clicked()
 {
-    selectPath();
+    strCopy = selectPath();
+    QString qstrCopy(strCopy.c_str());
+    ui->copyLine->setText(qstrCopy);
+    qstrCopy.clear();
+    
 }
 
 void BackupDialog::on_backupButton_clicked()
 {
+    strBackup = selectPath();
+    QString qstrCopy(strBackup.c_str());
+    ui->backupLine->setText(qstrCopy);
+    qstrCopy.clear();
 }
-
-
-char *BackupDialog::trim(char *s)
-{    char *ptr;
-    if (!s)
-        return NULL;   // handle NULL string
-    if (!*s)
-        return s;      // handle empty string
-    for (ptr = s + strlen(s) - 1; (ptr >= s) && isspace(*ptr); --ptr);
-    ptr[1] = '\0';
-    return s;
-}
-
-
 
 
 
