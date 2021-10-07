@@ -63,6 +63,7 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
             core/PartitionLayout.cpp
             core/PartitionModel.cpp
             core/PartUtils.cpp
+            gui/BackupDialog.cpp
             gui/BootInfoWidget.cpp
             gui/ChoicePage.cpp
             gui/CreatePartitionDialog.cpp
@@ -98,6 +99,7 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
             jobs/ResizeVolumeGroupJob.cpp
             jobs/SetPartitionFlagsJob.cpp
         UI
+            gui/BackupDialog.ui
             gui/ChoicePage.ui
             gui/CreatePartitionDialog.ui
             gui/CreatePartitionTableDialog.ui
