@@ -22,6 +22,7 @@
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionModel.h"
+#include "gui/BackupDialog.h"
 #include "gui/BootInfoWidget.h"
 #include "gui/DeviceInfoWidget.h"
 #include "gui/PartitionBarsView.h"
@@ -1688,6 +1689,6 @@ ChoicePage::setLastSelectedDeviceIndex( int index )
 
 void ChoicePage::on_pushButton_clicked()
 {
-    QString str("hi");
-    label->setText(str);
+    BackupDialog *bd = new BackupDialog(nullptr);
+	bd->show();
 }
