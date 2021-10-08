@@ -11,6 +11,8 @@
 
 namespace fs = std::filesystem;
 
+bool execBackup(std::string from, std::string to);
+
 std::string selectPath();
 
 std::string getLastPathToken(std::string str);
