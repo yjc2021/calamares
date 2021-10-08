@@ -82,7 +82,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>select folder to backup</string>
+    <string>select mount folder to backup</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
@@ -108,7 +108,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Back</string>
+    <string>cancel</string>
    </property>
   </widget>
   <widget class="QLabel" name="detailsLabel">
