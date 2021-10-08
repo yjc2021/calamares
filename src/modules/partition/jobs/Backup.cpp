@@ -1,5 +1,16 @@
 #include "Backup.h"
 
+bool execBackup(std::string from, std::string to){
+    fs::path fromPath(from);
+    fs::path toPath(to);
+    
+    std::string cmd("tar -zcvf ");
+    cmd += to+"/"+getLastPathToken(from)+".tar.gz "+ from;
+    
+    // success backup == 0
+    return 0 == system(cmd.c_str());
+}
+
 std::string selectPath()
 {
     int size = 100;
