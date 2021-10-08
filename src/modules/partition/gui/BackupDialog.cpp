@@ -1,6 +1,7 @@
 #include "BackupDialog.h"
 #include "ui_BackupDialog.h"
 #include "jobs/Backup.h"
+#include "jobs/ExtractFileSize.h"
 
 #include <QtCore>
 #include <QtGui>
