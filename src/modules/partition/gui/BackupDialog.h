@@ -20,6 +20,10 @@ private slots:
     void on_copyButton_clicked();
 
     void on_backupButton_clicked();
+    
+    void on_pushButton_clicked();
+    
+    void on_pushButton_2_clicked();
 
 private:
     Ui::BackupDialog *ui;
