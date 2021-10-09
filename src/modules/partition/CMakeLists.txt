@@ -63,6 +63,7 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
             core/PartitionLayout.cpp
             core/PartitionModel.cpp
             core/PartUtils.cpp
+            gui/BackupThread.cpp
             gui/BackupDialog.cpp
             gui/BootInfoWidget.cpp
             gui/ChoicePage.cpp
