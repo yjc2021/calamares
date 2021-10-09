@@ -2,6 +2,7 @@
 #include "ui_BackupDialog.h"
 #include "jobs/Backup.h"
 #include "jobs/ExtractFileSize.h"
+#include "gui/BackupThread.h"
 
 #include <QtCore>
 #include <QtGui>
@@ -16,18 +17,28 @@
 #include <vector>
 #include <unistd.h>
 #include <cstring>
+#include <unistd.h>
 
+using std::thread;
 using namespace std;
 
-string strCopy;
-string strBackup;
+
 string tmp;
+
+//0-> ready, 1->running, 2->fin, 3->stop
+int phase = 0;
+extern int phase;
 
 BackupDialog::BackupDialog(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::BackupDialog)
 {
     ui->setupUi(this);
+    
+    // backup thread
+    backupthread = new BackupThread(this);
+    connect(backupthread, SIGNAL(ThreadEnd(int)), this, SLOT(listener(int)));
+    connect(this, SIGNAL(start(QString, QString)), backupthread, SLOT(setStr(QString, QString)));
     
     strCopy = "";
     strBackup = "";
@@ -43,32 +54,37 @@ BackupDialog::BackupDialog(QWidget *parent)
     	QString qstrCopy(strCopy.c_str());
 	ui->copyLine->setText(qstrCopy);
 	qstrCopy.clear();
-    	
     }
 }
 
 BackupDialog::~BackupDialog()
 {
+    
+    if(phase==1) {
+    	backupthread->terminate();
+    	backupthread->stop();
+    	phase =0;
+    }
     delete ui;
 }
 
 void BackupDialog::on_copyButton_clicked()
 {
-    strCopy = selectPath();
+    tmp = selectPath();
+    if(tmp[0] == '/') strCopy = tmp;
     QString qstrCopy(strCopy.c_str());
     ui->copyLine->setText(qstrCopy);
     qstrCopy.clear();
-    
 }
 
 void BackupDialog::on_backupButton_clicked()
 {
-    strBackup = selectPath();
+    tmp = selectPath();
+    if(tmp[0] == '/') strBackup = tmp;
     QString qstrCopy(strBackup.c_str());
     ui->backupLine->setText(qstrCopy);
     qstrCopy.clear();
 }
-
 
 void BackupDialog::on_pushButton_clicked(){
     // leakness of capability
@@ -79,27 +95,35 @@ void BackupDialog::on_pushButton_clicked(){
     }
     // start backup
     else{ 
+    	ui->pushButton->setEnabled(false);
+    	emit start(*(new QString(strCopy.c_str())), *(new QString(strBackup.c_str())));
     	QString working("Working...");
     	ui->detailsLabel->setText(working);
     	working.clear();
+    	phase =1;
     	
-    	// done
-    	if(execBackup(strCopy, strBackup)){
-    	    QString success("The Backup is over!!");
-    	    ui->detailsLabel->setText(success);
-    	    success.clear();
-    	}
-    	// exception occurs!!
-    	else{
-    	    QString excp("Unexpected exception occured, please retry!!");
-    	    ui->detailsLabel->setText(excp);
-    	    excp.clear();
-    	}
+    	backupthread->start();
     }
 }
 
-void BackupDialog::on_pushButton_2_clicked(){
-    close();
+void BackupDialog::listener(int result){
+    QString lb("");
+    if(result==0) {
+    	lb = "Done.";
+    	if(phase==1) phase =2;
+    }else{
+    	lb = "Unexpected exception occurs!";
+    	phase =3;
+    }
+    ui->detailsLabel->setText(lb);
 }
 
+void BackupDialog::on_pushButton_2_clicked(){
+    if(phase==1) {
+    	backupthread->terminate();
+    	backupthread->stop();
+    	phase =0;
+    }
+    close();
+}
 
