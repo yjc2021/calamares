@@ -8,10 +8,10 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <unistd.h>
 
 namespace fs = std::filesystem;
 
-bool execBackup(std::string from, std::string to);
 
 std::string selectPath();
 
