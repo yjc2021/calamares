@@ -1690,5 +1690,6 @@ ChoicePage::setLastSelectedDeviceIndex( int index )
 void ChoicePage::on_pushButton_clicked()
 {
     BackupDialog *bd = new BackupDialog(nullptr);
+    bd->setModal(true);
 	bd->show();
 }
