@@ -2,6 +2,8 @@
 #define BACKUP_DIALOG__H
 
 #include <QDialog>
+#include <string>
+#include "gui/BackupThread.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class BackupDialog; }
@@ -14,6 +16,8 @@ class BackupDialog : public QDialog
 public:
     BackupDialog(QWidget *parent = nullptr);
     ~BackupDialog();
+    
+    
 
 private slots:
 
@@ -24,8 +28,19 @@ private slots:
     void on_pushButton_clicked();
     
     void on_pushButton_2_clicked();
+    
+    void listener(int);
+    
+
 
 private:
     Ui::BackupDialog *ui;
+    BackupThread *backupthread;
+    std::string strCopy;
+    std::string strBackup;
+    
+signals:
+    void fin();
+    void start(QString, QString);
 };
 #endif // DIALOG_H
