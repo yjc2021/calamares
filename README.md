@@ -21,7 +21,7 @@
 > thanks to third party branding and external modules support.
 
 ---
-# calamares-kiyung
+# calamares-Kiyung
 
 This calamares-kiyung exstension __support advanced modules for better user experience__ that autofill existing user name on the "users" module and do backup important file to usb on the "partition" module
 
