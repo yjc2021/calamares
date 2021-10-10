@@ -50,9 +50,15 @@ Click [here](https://www.youtube.com/watch?v=Ye19DK44Wdc) to view the demonstrat
 ### Contributer
 
 **Team Kiyung**
+
 name: Ju yong han
+
 email: ju990828@konkuk.ac.kr
+
 https://yonghanju.github.io/
     
+ <br>
+ 
 name: Choi yong jae
+
 email: yongjae.choi20@gmail.com
