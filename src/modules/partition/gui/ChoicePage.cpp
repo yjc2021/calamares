@@ -89,6 +89,9 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     , m_enableEncryptionWidget( true )
 {
     setupUi( this );
+        
+    label->hide();
+    pushButton->hide();
 
     auto gs = Calamares::JobQueue::instance()->globalStorage();
 
@@ -480,11 +483,17 @@ ChoicePage::applyActionChoice( InstallChoice choice )
     m_beforePartitionBarsView->selectionModel()->disconnect( SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ) );
     m_beforePartitionBarsView->selectionModel()->clearSelection();
     m_beforePartitionBarsView->selectionModel()->clearCurrentIndex();
+    
+    label->hide();
+    pushButton->hide();
 
     switch ( choice )
     {
     case InstallChoice::Erase:
     {
+        label->show();
+        pushButton->show();
+        
         auto gs = Calamares::JobQueue::instance()->globalStorage();
         PartitionActions::Choices::AutoPartitionOptions options { gs->value( "defaultPartitionTableType" ).toString(),
                                                                   m_config->eraseFsType(),
