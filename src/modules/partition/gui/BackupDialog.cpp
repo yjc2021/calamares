@@ -89,7 +89,7 @@ void BackupDialog::on_nextButton_clicked(){
     }
     // start backup
     else{ 
-    	ui->pushButton->setEnabled(false);
+    	ui->nextButton->setEnabled(false);
     	emit strPass(*(new QString(strCopy.c_str())), *(new QString(strBackup.c_str())));
     	QString working("Working...");
     	ui->detailsLabel->setText(working);
