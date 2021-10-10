@@ -44,6 +44,12 @@ Click [here](https://www.youtube.com/watch?v=Ye19DK44Wdc) to view the demonstrat
     
 ---
 
+## Getting Started
+
+[Getting Started](https://github.com/calamares/calamares/wiki/Develop-Guide#build)
+
+---
+
 ### Contributer
 
 **Team Kiyung**
