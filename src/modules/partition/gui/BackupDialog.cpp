@@ -80,7 +80,7 @@ void BackupDialog::on_backupButton_clicked()
     qstrCopy.clear();
 }
 
-void BackupDialog::on_pushButton_clicked(){
+void BackupDialog::on_nextButton_clicked(){
     // leakness of capability
     if(get_du_size(strCopy.c_str()) +1000 > get_df_size(strBackup.c_str())){
     	QString er("not enough storage space, please reselect the file.");
@@ -112,7 +112,7 @@ void BackupDialog::listener(int result){
     ui->detailsLabel->setText(lb);
 }
 
-void BackupDialog::on_pushButton_2_clicked(){
+void BackupDialog::on_cancelButton_clicked(){
     close();
 }
 
