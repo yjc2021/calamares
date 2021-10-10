@@ -20,50 +20,45 @@
 > be customizable by distribution maintainers without need for cumbersome patching,
 > thanks to third party branding and external modules support.
 
-## Target Audience
+---
+*
+# calamares-kiyung
 
-Calamares is a Linux installer; users who install Linux on a computer will hopefully
-use it just **once**, to install their Linux distribution. Calamares is not
-a "ready to use" application: distributions apply a huge amount of customisation
-and configuration to Calamares, and the target audience for this repository
-is those distributions, and the people who make those Linux distro's.
+This calamares-kiyung exstension ***support advanced modules for better user experience*** that autofill existing user name on the "users" module and do backup important file to usb on the "partition" module
 
-Calamares has some [generic user documentation](https://calamares.io/docs/users-guide/)
-for end-users, but most of what we have is for distro developers.
+<br>
 
-## Getting Calamares
+---
 
-Clone Calamares from GitHub. The default branch is called *calamares*.
 
-```
-git clone https://github.com/calamares/calamares.git
-```
+*
+## Advanced module
 
-Calamares is a KDE-Frameworks and Qt-based, C++17, CMake-built application.
-The dependencies are explained in [CONTRIBUTING.md](CONTRIBUTING.md).
+     - [user](https://github.com/yonghanJu/calamares/tree/calamares/src/modules/users/)
+     
+     - [partition](https://github.com/yonghanJu/calamares/tree/calamares/src/modules/partiton/)
 
-## Contributing to Calamares
+<br>
 
-Calamares welcomes PRs. New issues are welcome, too.
-There are both the Calamares **core** repository (this one),
-and an **extensions** repository ([Calamares extensions](https://github.com/calamares/calamares-extensions)).
+---
 
-Contributions to code, modules, documentation, the wiki and the website are all welcome.
-There is more information in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+*
+## Demonstration video
 
-## Join the Conversation
+    The following video demonstrates shortly how this extension would work.    
+    Click [here](https://www.youtube.com/watch?v=Ye19DK44Wdc) to view the demonstration.
+    
+<br>
 
-GitHub Issues are **one** place for discussing Calamares if there are concrete
-problems or a new feature to discuss.
+---
 
-Regular Calamares development chit-chat happens in a [Matrix](https://matrix.org/)
-room, `#calamares:kde.org`. The conversation is bridged with IRC
-on [Libera.Chat](https://libera.chat/).
-Responsiveness is best during the day
-in Europe, but feel free to idle. If you use IRC, **DO NOT** ask-and-leave. Keep
-that chat window open because it can easily take a few hours for
-someone to notice a message.
-Matrix is persistent, and we'll see your message eventually.
+*
+### Contributer
 
-* [![Join us on Matrix](https://img.shields.io/badge/Matrix-%23calamares:kde.org-blue)](https://webchat.kde.org/#/room/%23calamares:kde.org)
-* [![Chat on IRC](https://img.shields.io/badge/IRC-Libera.Chat%20%23calamares-green)](https://kiwiirc.com/client/irc.libera.chat/#calamares)
+**Team Kiyung**
+name: Ju yong han
+email: ju990828@konkuk.ac.kr
+https://yonghanju.github.io/
+    
+name: Choi yong jae
+email: yongjae.choi20@gmail.com
