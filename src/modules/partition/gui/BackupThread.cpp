@@ -14,12 +14,15 @@ void BackupThread::run()
 {
     string cmd = "tar -zcvf ";
     cmd += strBackup+"/"+getLastPathToken(strCopy)+".tar.gz "+ strCopy;
-    int r = system(cmd.c_str());
-    if(r==0) emit ThreadEnd(0);
-    else {
-    	cmd = "rm -f " + strBackup+"/"+getLastPathToken(strCopy)+".tar.gz";
-    	system(cmd.c_str());
-    	emit emit ThreadEnd(1);
+
+    switch( system(cmd.c_str()) ){
+    	case 0: 
+    	    emit ThreadEnd(0);
+    	    break;
+    	default :
+    	    cmd = "rm -f " + strBackup+"/"+getLastPathToken(strCopy)+".tar.gz";
+    	    system(cmd.c_str());
+    	    emit emit ThreadEnd(1);
     }
 }
  
