@@ -39,8 +39,10 @@ private:
     std::string strCopy;
     std::string strBackup;
     
+    void closeEvent(QCloseEvent *event);
+    
 signals:
     void fin();
-    void start(QString, QString);
+    void strPass(QString, QString);
 };
 #endif // DIALOG_H
