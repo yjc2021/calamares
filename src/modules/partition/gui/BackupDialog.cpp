@@ -38,7 +38,7 @@ BackupDialog::BackupDialog(QWidget *parent)
     // backup thread
     backupthread = new BackupThread(this);
     connect(backupthread, SIGNAL(ThreadEnd(int)), this, SLOT(listener(int)));
-    connect(this, SIGNAL(start(QString, QString)), backupthread, SLOT(setStr(QString, QString)));
+    connect(this, SIGNAL(strPass(QString, QString)), backupthread, SLOT(setStr(QString, QString)));
     
     strCopy = "";
     strBackup = "";
@@ -59,12 +59,6 @@ BackupDialog::BackupDialog(QWidget *parent)
 
 BackupDialog::~BackupDialog()
 {
-    
-    if(phase==1) {
-    	backupthread->terminate();
-    	backupthread->stop();
-    	phase =0;
-    }
     delete ui;
 }
 
@@ -96,7 +90,7 @@ void BackupDialog::on_pushButton_clicked(){
     // start backup
     else{ 
     	ui->pushButton->setEnabled(false);
-    	emit start(*(new QString(strCopy.c_str())), *(new QString(strBackup.c_str())));
+    	emit strPass(*(new QString(strCopy.c_str())), *(new QString(strBackup.c_str())));
     	QString working("Working...");
     	ui->detailsLabel->setText(working);
     	working.clear();
@@ -119,11 +113,14 @@ void BackupDialog::listener(int result){
 }
 
 void BackupDialog::on_pushButton_2_clicked(){
-    if(phase==1) {
+    close();
+}
+
+void BackupDialog::closeEvent(QCloseEvent *event){
+   if(phase==1) {
     	backupthread->terminate();
     	backupthread->stop();
     	phase =0;
     }
-    close();
+    event->accept();
 }
-
