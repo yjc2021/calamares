@@ -25,9 +25,9 @@ private slots:
 
     void on_backupButton_clicked();
     
-    void on_pushButton_clicked();
+    void on_nextButton_clicked();
     
-    void on_pushButton_2_clicked();
+    void on_cancelButton_clicked();
     
     void listener(int);
     
