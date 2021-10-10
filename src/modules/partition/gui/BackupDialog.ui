@@ -85,7 +85,7 @@
     <string>select mount folder to backup</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
      <x>420</x>
@@ -98,7 +98,7 @@
     <string>Next</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
      <x>310</x>
@@ -128,3 +128,4 @@
  <resources/>
  <connections/>
 </ui>
+
