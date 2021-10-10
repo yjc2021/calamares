@@ -31,9 +31,8 @@ This calamares-kiyung exstension ***support advanced modules for better user exp
 
 ## Advanced module
 
-     - [user](https://github.com/yonghanJu/calamares/tree/calamares/src/modules/users/)
-     
-     - [partition](https://github.com/yonghanJu/calamares/tree/calamares/src/modules/partiton/)
+ - [user](https://github.com/yonghanJu/calamares/tree/calamares/src/modules/users/)
+ - [partition](https://github.com/yonghanJu/calamares/tree/calamares/src/modules/partiton/)
 
 <br>
 
@@ -41,14 +40,13 @@ This calamares-kiyung exstension ***support advanced modules for better user exp
 
 ## Demonstration video
 
-    The following video demonstrates shortly how this extension would work.    
-    Click [here](https://www.youtube.com/watch?v=Ye19DK44Wdc) to view the demonstration.
+The following video demonstrates shortly how this extension would work.    
+Click [here](https://www.youtube.com/watch?v=Ye19DK44Wdc) to view the demonstration.
     
 <br>
 
 ---
 
-*
 ### Contributer
 
 **Team Kiyung**
