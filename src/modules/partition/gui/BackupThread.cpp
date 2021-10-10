@@ -27,6 +27,8 @@ void BackupThread::stop()
 {
     string cmd = "rm -f " + strBackup+"/"+getLastPathToken(strCopy)+".tar.gz";
     system(cmd.c_str());
+    cmd = "pkill tar";
+    system(cmd.c_str());
 }
 
 void BackupThread::setStr(QString from, QString to){
