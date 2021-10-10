@@ -34,6 +34,9 @@ BackupDialog::BackupDialog(QWidget *parent)
     , ui(new Ui::BackupDialog)
 {
     ui->setupUi(this);
+        
+    ui->copyLine->setReadOnly(true);
+    ui->backupLine->setReadOnly(true);
     
     // backup thread
     backupthread = new BackupThread(this);
