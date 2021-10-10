@@ -1,6 +1,6 @@
 #include "BackupThread.h"
 #include "BackupDialog.h"
-#include "jobs/Backup.h"
+#include "jobs/PathSelect.h"
 
 using namespace std;
  
