@@ -57,21 +57,21 @@ $ python3 deploycala.py
 
 2.
 ```
-git clone https://github.com/yonghanJu/calamares-Kiyung.git
-mkdir calamares-Kiyung/build
-cd calamares-Kiyung/build
-cp ../settings.conf .
+$ git clone https://github.com/yonghanJu/calamares-Kiyung.git
+$ mkdir calamares-Kiyung/build
+$ cd calamares-Kiyung/build
+$ cp ../settings.conf .
 ```
 
 3.
 ```
-cmake -DCMAKE_BUILD_TYPE=Debug ..
-make
+$ cmake -DCMAKE_BUILD_TYPE=Debug ..
+$ make
 ```
 
 4.
 ```
-sudo calamares -d
+$ sudo calamares -d
 ```
 
 ---
