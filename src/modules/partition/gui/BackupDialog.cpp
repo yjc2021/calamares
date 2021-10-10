@@ -1,6 +1,6 @@
 #include "BackupDialog.h"
 #include "ui_BackupDialog.h"
-#include "jobs/Backup.h"
+#include "jobs/PathSelect.h"
 #include "jobs/ExtractFileSize.h"
 #include "gui/BackupThread.h"
 
