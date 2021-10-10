@@ -25,7 +25,6 @@
 
 This calamares-kiyung exstension ***support advanced modules for better user experience*** that autofill existing user name on the "users" module and do backup important file to usb on the "partition" module
 
-<br>
 
 ---
 
