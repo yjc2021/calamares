@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Backup</string>
   </property>
   <widget class="QPushButton" name="copyButton">
    <property name="geometry">
@@ -85,7 +85,7 @@
     <string>select mount folder to backup</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="nextButton">
+  <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
      <x>420</x>
@@ -98,7 +98,7 @@
     <string>Next</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="cancelButton">
+  <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
      <x>310</x>
@@ -128,4 +128,3 @@
  <resources/>
  <connections/>
 </ui>
-
