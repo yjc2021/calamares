@@ -84,7 +84,7 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
             gui/ReplaceWidget.cpp
             gui/VolumeGroupBaseDialog.cpp
             jobs/ExtractFileSize.cpp
-            jobs/Backup.cpp
+            jobs/PathSelect.cpp
             jobs/AutoMountManagementJob.cpp
             jobs/ChangeFilesystemLabelJob.cpp
             jobs/ClearMountsJob.cpp
