@@ -44,9 +44,35 @@ Click [here](https://www.youtube.com/watch?v=Ye19DK44Wdc) to view the demonstrat
     
 ---
 
-## Getting Started
+## Quickly Getting Started
 
-[Getting Started](https://github.com/calamares/calamares/wiki/Develop-Guide#build)
+**Don't EVER run deploycala.py on a non-live system.** 
+Please read [Wiki](https://github.com/calamares/calamares/wiki/Develop-Guide#build).
+
+1. 
+```
+$ curl -LO https://calamares.io/deploycala.py
+$ python3 deploycala.py
+```
+
+2.
+```
+git clone https://github.com/yonghanJu/calamares-Kiyung.git
+mkdir calamares-Kiyung/build
+cd calamares-Kiyung/build
+cp ../settings.conf .
+```
+
+3.
+```
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+make
+```
+
+4.
+```
+sudo calamares -d
+```
 
 ---
 
