@@ -51,14 +51,11 @@ Click [here](https://www.youtube.com/watch?v=Ye19DK44Wdc) to view the demonstrat
 
 **Team Kiyung**
 
-name: Ju yong han
-
-email: ju990828@konkuk.ac.kr
-
-https://yonghanju.github.io/
+name: Ju yong han <br>
+email: ju990828@konkuk.ac.kr <br>
+site: https://yonghanju.github.io/
     
  <br>
  
-name: Choi yong jae
-
+name: Choi yong jae <br>
 email: yongjae.choi20@gmail.com
