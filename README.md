@@ -49,13 +49,13 @@ Click [here](https://www.youtube.com/watch?v=Ye19DK44Wdc) to view the demonstrat
 **Don't EVER run deploycala.py on a non-live system.** 
 Please read [Wiki](https://github.com/calamares/calamares/wiki/Develop-Guide#build).
 
-1. 
+1. Set up Envrionment
 ```
 $ curl -LO https://calamares.io/deploycala.py
 $ python3 deploycala.py
 ```
 
-2.
+2. Make build directory
 ```
 $ git clone https://github.com/yonghanJu/calamares-Kiyung.git
 $ mkdir calamares-Kiyung/build
@@ -63,13 +63,13 @@ $ cd calamares-Kiyung/build
 $ cp ../settings.conf .
 ```
 
-3.
+3. Build
 ```
 $ cmake -DCMAKE_BUILD_TYPE=Debug ..
 $ make
 ```
 
-4.
+4. Run
 ```
 $ sudo calamares -d
 ```
