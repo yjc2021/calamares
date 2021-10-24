@@ -1,5 +1,7 @@
- *   SPDX-FileCopyrightText: 2021 Kiyung <yongjae.choi20@gmail.com>
- *   SPDX-License-Identifier: GPL-3.0-or-later
+/*
+*   SPDX-FileCopyrightText: 2021 Kiyung <yongjae.choi20@gmail.com>
+*   SPDX-License-Identifier: GPL-3.0-or-later
+*/
 #ifndef BACKUP_DIALOG__H
 #define BACKUP_DIALOG__H
 
