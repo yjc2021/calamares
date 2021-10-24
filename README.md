@@ -65,7 +65,7 @@ $ cd calamares-Kiyung/build
 $ cp ../settings.conf .
 ```
 
-####### 3. Build
+###### 3. Build
      
 ```
 $ cmake -DCMAKE_BUILD_TYPE=Debug ..
