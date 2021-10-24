@@ -2,7 +2,7 @@
 <ui version="4.0">
  <author>
 SPDX-FileCopyrightText: 2015 Teo Mrnjavac &lt;teo@kde.org&gt;
-SPDX-FileCopyrightText: 2021 Kiyung <yongjae.choi20@gmail.com>
+SPDX-FileCopyrightText: 2021 Kiyung &lt;yongjae.choi20@gmail.com&gt;
 SPDX-License-Identifier: GPL-3.0-or-later
  </author>
  <class>ChoicePage</class>
