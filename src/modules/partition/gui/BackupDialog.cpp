@@ -84,9 +84,14 @@ void BackupDialog::on_backupButton_clicked()
 }
 
 void BackupDialog::on_nextButton_clicked(){
+    if(strCopy.empty() || strBackup.empty()) {
+    	QString e("Select both copy and backup paths.");
+    	ui->detailsLabel->setText(e);
+    	e.clear();
+    }
     // leakness of capability
-    if(get_du_size(strCopy.c_str()) +1000 > get_df_size(strBackup.c_str())){
-    	QString er("not enough storage space, please reselect the file.");
+    else if(get_du_size(strCopy.c_str()) +1000 > get_df_size(strBackup.c_str())){
+    	QString er("Not enough storage space, please reselect.");
         ui->detailsLabel->setText(er);
         er.clear();
     }
