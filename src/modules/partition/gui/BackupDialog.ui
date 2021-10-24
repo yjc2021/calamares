@@ -1,8 +1,9 @@
- *   SPDX-FileCopyrightText: 2021 Kiyung <yongjae.choi20@gmail.com>
- *   SPDX-License-Identifier: GPL-3.0-or-later
-  
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+  <author>
+SPDX-FileCopyrightText: 2021 Kiyung <yongjae.choi20@gmail.com>
+SPDX-License-Identifier: GPL-3.0-or-later
+ </author>
  <class>BackupDialog</class>
  <widget class="QDialog" name="BackupDialog">
   <property name="geometry">
