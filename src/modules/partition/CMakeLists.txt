@@ -1,7 +1,7 @@
 # === This file is part of Calamares - <https://calamares.io> ===
 #
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
-#   SPDX-FileCopyrightText: 2021 Kiyung
+#   SPDX-FileCopyrightText: 2021 Kiyung <yongjae.choi20@gmail.com>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
 
