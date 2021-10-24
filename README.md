@@ -11,10 +11,6 @@
 [![GitHub license](https://img.shields.io/github/license/calamares/calamares.svg)](https://github.com/calamares/calamares/blob/calamares/LICENSE)
 
 
-| [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://www.transifex.com/projects/p/calamares/) | [Contribute](CONTRIBUTING.md) | [Matrix: #calamares:kde.org](https://webchat.kde.org/#/room/%23calamares:kde.org) | [IRC: Libera.Chat #calamares](https://kiwiirc.com/client/irc.libera.chat/#calamares) | [Wiki](https://github.com/calamares/calamares/wiki) |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-
-
 > Calamares is a distribution-independent system installer, with an advanced partitioning
 > feature for both manual and automated partitioning operations. Calamares is designed to
 > be customizable by distribution maintainers without need for cumbersome patching,
