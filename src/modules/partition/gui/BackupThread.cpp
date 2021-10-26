@@ -16,8 +16,9 @@ BackupThread::BackupThread(QObject *parent) :
  
 void BackupThread::run()
 {
+    string last = getLastPathToken(strCopy);
     string cmd = "tar -zcvf ";
-    cmd += strBackup+"/"+getLastPathToken(strCopy)+".tar.gz "+ strCopy;
+    cmd += strBackup+"/"+ last +".tar.gz -C "+ strCopy.substr(0, strCopy.size()-last.size())+" "+last;
 
     switch( system(cmd.c_str()) ){
     	case 0: 
@@ -25,7 +26,7 @@ void BackupThread::run()
     	    break;
     	default :
     	    cmd = "rm -f " + strBackup+"/"+getLastPathToken(strCopy)+".tar.gz";
-    	    system(cmd.c_str());
+    	    if(system(cmd.c_str()));
     	    emit emit ThreadEnd(1);
     }
 }
@@ -33,9 +34,9 @@ void BackupThread::run()
 void BackupThread::stop()
 {
     string cmd = "rm -f " + strBackup+"/"+getLastPathToken(strCopy)+".tar.gz";
-    system(cmd.c_str());
+    if(system(cmd.c_str()));
     cmd = "pkill tar";
-    system(cmd.c_str());
+    if(system(cmd.c_str()));
 }
 
 void BackupThread::setStr(QString from, QString to){
