@@ -17,7 +17,7 @@ std::string selectPath()
     sprintf(Call, "%s --file-selection --directory --modal --title=\"%s\" ", zenityP, "Select file");
 
     FILE *f = popen(Call, "r");
-    fgets(Bufor, size, f);
+    if(fgets(Bufor, size, f));
 
     int ret = pclose(f);
     if (ret < 0)
@@ -37,13 +37,8 @@ std::string getLastPathToken(std::string str)
     while (getline(ss, stringBuffer, '/'))
     {
         x.push_back(stringBuffer);
-        int size = 100;
     }
 
     // last dir name from path
     return x[x.size() - 1];
 }
-
-
-
-
