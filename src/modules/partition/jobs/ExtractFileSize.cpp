@@ -17,7 +17,6 @@ int get_du_size(const char* str)
 	int size = 100;
 	char Bufor[100];
 	int du_size = 0;
-	char *next_ptr;
 	
 	std::ostringstream oss;
 	string path = str;
@@ -25,7 +24,7 @@ int get_du_size(const char* str)
 	oss << "du -sk "+ path;
 	FILE* stream = popen(oss.str().c_str() , "r");
 	
-	fgets(Bufor, size, stream);
+	if(fgets(Bufor, size, stream));
 	
 	vector<string> vec;
 
@@ -51,8 +50,8 @@ int get_df_size(const char* str)
 	oss << "df "+ path;
 	FILE* stream = popen(oss.str().c_str() , "r");
 
-	fgets(Bufor, size, stream);
-	fgets(Bufor, size, stream);
+	if(fgets(Bufor, size, stream));
+	if(fgets(Bufor, size, stream));
 	
 	vector<string> vec;
 	
@@ -79,4 +78,3 @@ bool isManageable(int from, int to)
 	if (gap < 0) return false;
 	else return true;
 }
-
